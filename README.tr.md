@@ -1,170 +1,116 @@
-## Instagram DM'lerinizi Tarayıcıdan Anında Dışa Aktarın — API Yok, Eklenti Yok
-**Instagram direkt mesajlarınızı dışa aktarmak** için Instagram'ın 12-24 saat süren veri indirme işlemini beklemeye gerek yok. **InstaDM-Scraper**, doğrudan tarayıcınızın DevTools Console'unda çalışan hafif bir **Instagram DM dışa aktarıcıdır**. **@miabeyefendi** tarafından geliştirilen bu araç, Instagram'ın virtual scroll yapısını yönetir, DOM render analizi ile gönderilen/alınan mesajları tespit eder ve tarih, hikaye yanıtları, reaksiyonlar ve medya etiketleriyle temiz bir kronolojik sohbet çıktısı üretir.
+# 📨 InstaDM-Scraper V2: Gelişmiş Instagram DM Araç Seti | Yazar: @miabeyefendi
 
-# 📨 InstaDM-Scraper: Tarayıcı Konsol Instagram DM Dışa Aktarıcı | By: @miabeyefendi
+## Instagram DM'lerini Doğrudan Tarayıcıdan Aktarın, Yakalayın ve Çevirin — Uzantı Yok, API Yok
+**InstaDM-Scraper V2**, orijinal konsol betiğinin devrimsel bir evrimidir. Artık sadece bir kod parçası değil; doğrudan Instagram DM sayfanıza enjekte edilen tam kapsamlı, **Etkileşimli bir Dashboard**'dur.
+
+**@miabeyefendi** tarafından geliştirilen V2; **Canlı Medya Yakalama**, **Yerelleştirilmiş Çıktılar (TR/EN/ES)**, **Sesli Mesaj Transkripti** ve **Binary ZIP Çıktısı** özelliklerine sahiptir. Instagram'ın 24 saatlik veri indirme süresini beklemek yerine, aktif oturumunuzdan verileri kullanıcı dostu bir arayüzle anında çeker.
 
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES2020+-F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![Platform](https://img.shields.io/badge/Platform-Tarayıcı_Konsol-4285F4.svg?style=for-the-badge&logo=googlechrome&logoColor=white)](https://github.com/Miabeyefendi/InstaDM-Scraper)
-[![No API](https://img.shields.io/badge/API-Gerekmez-success.svg?style=for-the-badge)](https://github.com/Miabeyefendi/InstaDM-Scraper)
-[![License: GPL-3.0](https://img.shields.io/badge/Lisans-GPL--3.0-blue.svg?style=for-the-badge)](https://www.gnu.org/licenses/gpl-3.0)
+[![Platform](https://img.shields.io/badge/Platform-Taray%C4%B1c%C4%B1_Konsolu-4285F4.svg?style=for-the-badge&logo=googlechrome&logoColor=white)](https://github.com/Miabeyefendi/InstaDM-Scraper)
+[![Localization](https://img.shields.io/badge/Dil_Deste%C4%9Fi-TR%20|%20EN%20|%20ES-rebeccapurple.svg?style=for-the-badge)](https://github.com/Miabeyefendi/InstaDM-Scraper)
+[![No API](https://img.shields.io/badge/API-Gerekmiyor-success.svg?style=for-the-badge)](https://github.com/Miabeyefendi/InstaDM-Scraper)
 
-[EN | Read in English](README.md) | [Teknik Rehber](egitim.md)
-
-**InstaDM-Scraper**, Instagram DM geçmişinizi doğrudan tarayıcıdan çıkaran saf JavaScript aracıdır.  
-Instagram'ın dahili veri indirme sistemi (12-24 saat süren) yerine, bu script DevTools Console'da anında çalışır ve temiz, formatlanmış bir sohbet çıktısı üretir.
+[EN | Read in English](README.md) | [ES | Leer en Español](README.es.md)
 
 ---
 
-## 🔥 Neden InstaDM-Scraper?
+## 🔥 Neden V2'ye Geçmelisiniz?
 
-Instagram'ın resmi veri indirme sistemi yavaş ve çıktı formatı karmaşıktır.  
-**InstaDM-Scraper** anında, yapılandırılmış sonuç verir.
+V1 bir betikti; **V2 ise tam bir araç setidir.**
 
-- 🚫 **API Anahtarı Gerekmez**  
-  Tamamen tarayıcınızda çalışır — token yok, OAuth yok, üçüncü parti servis yok.
+- 🖥️ **Etkileşimli Arayüz Paneli (Overlay UI)**  
+  Artık ham konsol çıktılarıyla uğraşmanıza gerek yok. Taramayı kontrol edin, mesajları filtreleyin ve dışa aktarma seçeneklerini sayfaya eklenen modern bir panelden yönetin.
 
-- 🔄 **Virtual Scroll Uyumlu**  
-  Instagram virtual scrolling kullanır (aynı anda DOM'da sadece ~10-15 mesaj bulunur). Bu script tüm sohbeti tarar ve DOM mutasyonlarını izleyerek her mesajı yakalar.
+- 🌍 **Tam Yerelleştirilmiş Çıktılar**  
+  Araç ve çıktı dosyaları artık seçtiğiniz dile uyum sağlar. Dil Türkçe seçilirse başlıklar `Gönderilen:`, İngilizce seçilirse `Sent:` olarak oluşturulur. Tarih formatları seçilen dile göre otomatik düzenlenir.
 
-- 📅 **Kronolojik Çıktı**  
-  Mesajlar eskiden yeniye doğru, doğru tarih damgalarıyla dışa aktarılır.
+- 📸 **Canlı Medya Yakalama (Hook Sistemi)**  
+  V2, ağ isteklerini (XHR/Fetch) ve `PerformanceObserver`'ı izleyerek; DOM'da normalde görünmeyen Reels linklerini, sesli mesajları ve yüksek çözünürlüklü görselleri canlı olarak yakalar.
 
-- 🎯 **Akıllı Gönderen Tespiti**  
-  `role="presentation"` balonlarının arka plan rengini analiz ederek gönderilen/gelen mesajları ayırır (`rgb(74,93,249)` = gönderilen, `rgb(37,41,46)` = gelen).
+- 📦 **Binary ZIP Dışa Aktarma**  
+  Sadece metinleri değil, medyanın kendisini alın. V2; görselleri, sesli mesajları ve Reels videolarını (MP4) doğrudan indirmeye çalışır ve hepsini yapılandırılmış tek bir ZIP dosyası olarak paketler.
+
+- 🎙️ **Sesten Metne (Transkript)**  
+  Instagram'ın sesli mesajlar için arka planda oluşturduğu dahili transkriptleri otomatik olarak toplayan özel bir mod içerir.
 
 ---
 
 ## ✨ Temel Özellikler
 
-- **Tam Sohbet Dışa Aktarımı**  
-  Tüm konuşma geçmişini tarar ve her mesajı yakalar.
+- **Çoklu Format Desteği**  
+  Sohbet geçmişinizi **JSON**, **TXT**, **Markdown (MD)** veya tam kapsamlı bir **ZIP** arşivi olarak indirin.
 
-- **Hikaye Yanıtı Tespiti**  
-  Hikaye yanıtlarını tespit eder ve etiketler (`"hikayesine yanıt verdi"`, `"hikayesine ifade bıraktı"`).
+- **Derin Medya Çözümleme**  
+  Paylaşılan Reels videolarının doğrudan MP4 bağlantılarını ve kapak fotoğraflarını otomatik olarak çözer.
 
-- **Reaksiyon/Beğeni Tespiti**  
-  Mesajlardaki emoji reaksiyonlarını (❤️, 😂, 🔥, vb.) `aria-label` ve küçük emoji span'ları ile tespit eder.
+- **Akıllı Filtreleme ve Arama**  
+  Anahtar kelimelerle mesajları bulun veya zaman akışını "Sadece Görseller", "Sadece Sesler" veya "Sadece Reels" şeklinde filtreleyin.
 
-- **Medya Etiketleri**  
-  Paylaşılan içerikleri `[Görsel]`, `[Reels]` veya `[Hikaye Görseli]` olarak etiketler (`<a href>` yollarını analiz eder).
+- **Mesaj Seçim Sistemi**  
+  Tüm sohbeti aktarmak yerine, sadece ihtiyacınız olan mesajları kutucuklarla seçerek dışa aktarın.
 
-- **Tarih Çıkarma**  
-  Gri renkli span'lardan Türkçe tarih formatlarını (`1 Oca 2026 00:30`, `Paz 21:14`, vb.) parse eder.
-
-- **Otomatik İndirme**  
-  Sonucu otomatik olarak `.txt` dosyası olarak indirir.
+- **Gizlilik Odaklı Mimari**  
+  %100 yerel olarak tarayıcınızda çalışır. Verileriniz asla bilgisayarınızdan dışarı çıkmaz. Üçüncü taraf sunucu, uzantı veya analiz aracı barındırmaz.
 
 ---
 
-## 🛠️ Başlarken
-
-### Gereksinimler
-- Chromium tabanlı tarayıcı (Chrome, Edge, Brave, vb.)
-- Aktif Instagram oturumu (`instagram.com` üzerinde giriş yapılmış)
+## 🛠️ Başlangıç
 
 ### Kullanım
 
-1. Instagram Web'de bir DM sohbeti açın:
-   ```
-   https://www.instagram.com/direct/t/XXXXXXXXX/
-   ```
-
-2. DevTools'u açın (`F12` veya `Ctrl+Shift+I`)
-
-3. **Console** sekmesine gidin
-
-4. `instadm-scraper.js` dosyasının tüm içeriğini kopyalayıp Console'a yapıştırın
-
-5. **Enter** tuşuna basın ve bekleyin — script şunları yapacak:
-   - En eski mesajlara scroll eder
-   - Yavaş yavaş aşağı inerek her adımda mesajları çeker
-   - Hiçbir mesajın atlanmaması için DOM değişikliklerini izler
-   - Sonucu `.txt` dosyası olarak indirir
+1. Instagram DM sohbetini açın: `https://www.instagram.com/direct/t/XXXXXXXXX/`
+2. DevTools'u açın (**F12** veya **Ctrl+Shift+I**) ve **Console** (Konsol) sekmesine tıklayın.
+3. `instadm-scraper-v2.js` içeriğinin tamamını kopyalayıp Konsol'a yapıştırın ve **Enter**'a basın.
+4. Ekranda **InstaDM Dashboard** paneli belirecektir.
+5. Dilinizi seçin (TR/EN/ES) ve **"Taramayı Başlat"** butonuna tıklayın.
+6. Otomatik kaydırmanın bitmesini bekleyin. İşlem tamamlandığında yan paneli kullanarak verilerinizi filtreleyebilir, arayabilir veya indirebilirsiniz.
 
 ---
 
-## 📋 Çıktı Formatı
+## 📋 Yerelleştirilmiş Çıktı Örneği (TR vs EN)
 
-```
-Tarih - Saat: 19 Ara 2024 23:12
-Hikaye yanıtı: @xxxxxxx'un hikayesine ifade bıraktı [Hikaye Görseli]
----
-Tarih - Saat: 12 May 2025 00:02
-Hikaye yanıtı: Nice mutlu yaşlarına [Görsel]
-Gelen: Tesekkur ederiimmmmmmmmmmmmmmmm 😊
-Gönderilen: Ricalar -❤️beğenildi
----
-Tarih - Saat: 5 Oca 2026 00:38
-[Reels]
-Gönderilen: Bunu izleyince içim bi yumuşadı sebepsizce... -❤️beğenildi
-Gelen: Benimde aşkım
-```
+V2, seçtiğiniz dile göre etiketlerini dinamik olarak değiştirir:
+
+| Özellik | Türkçe Çıktı | İngilizce Çıktı |
+|---|---|---|
+| **Tarih Başlığı** | `Tarih: 12 May 2025` | `Date: 12 May 2025` |
+| **Gönderici** | `Gönderilen:` / `Gelen:` | `Sent:` / `Received:` |
+| **Medya Etiketi** | `[Görsel]`, `[Ses]` | `[Image]`, `[Audio]` |
+| **Beğeni** | `-❤️ beğenildi` | `-❤️ liked` |
 
 ---
 
-## 🔧 Nasıl Çalışır — Teknik Özet
+## 🔧 Teknik Bakış (V2 Yenilikleri)
 
-| Zorluk | Çözüm |
+| Özellik | Teknik Uygulama |
 |---|---|
-| Instagram **virtual scroll** kullanıyor — sadece görünen mesajlar DOM'da var | Adım adım kaydırır, scrap yapmadan önce DOM mutasyonlarını bekler |
-| `scrollTop` **ters çevrilmiş** (0 = en alt, negatif = en üst) | En negatiften → 0'a doğru ilerler (eski → yeni) |
-| `role="row"` elementleri yok | `role="presentation"` balonlarını mesaj container'ı olarak kullanır |
-| Gönderilen vs. gelen tespiti | `role="presentation"` div'inin arka plan rengini analiz eder |
-| Tarihler gri span'larda gizli | Renk analizi (`rgb ~140-170`) + Türkçe tarih regex'i |
-| Reaksiyonlar küçük emoji span'ları | Parent zincirinde 8 seviye yukarıya kadar küçük emoji span arar |
+| **Ağ Müdahalesi** | Medya meta verilerini yakalamak için `window.fetch` ve `XMLHttpRequest`'i override eder. |
+| **Blob Yönetimi** | Sesli mesaj blob'larını tanımlamak için `URL.createObjectURL` sistemine kanca (hook) atar. |
+| **ZIP Oluşturma** | CRC32 sağlama toplamına sahip, bağımlılıksız özel bir ZIP oluşturucu kullanır. |
+| **Reels Çözücü** | `og:video` ve `og:image` etiketlerini ayıklamak için Reels sayfalarını asenkron olarak analiz eder. |
+| **Adaptif Arayüz** | Saf CSS/JS Blur-morphism (buzlu cam efekti) ile viewport değişimlerine duyarlı arayüz. |
 
 ---
 
-## 📈 Sürüm Geçmişi
+## 📈 Versiyon Geçmişi
+
+**v2.0.0 (Güncel)**
+- Etkileşimli Dashboard (Arayüz) eklendi.
+- Arayüz ve Çıktı için çoklu dil desteği (TR, EN, ES).
+- ZIP, JSON ve Markdown formatları eklendi.
+- Gerçek zamanlı medya yakalama (Ses, Reels, Görsel).
+- Sesli mesaj transkript ayıklama aracı.
+- Seçim, Arama ve Kategori filtreleme özellikleri.
 
 **v1.0.0**
-- DOM mutasyon izleme ile tam virtual scroll desteği
-- Arka plan rengi analizi ile gönderilen/gelen tespiti
-- Hikaye yanıtı, reaksiyon ve medya etiketi tespiti
-- Türkçe tarih formatı parse desteği
-- `.txt` olarak otomatik indirme
+- İlk sürüm. Konsol tabanlı .txt dışa aktarıcı.
 
 ---
 
-## ⚠️ Sorumluluk Reddi & Gizlilik
-
-InstaDM-Scraper **kişisel ve eğitsel amaçlarla** geliştirilmiştir.  
-Bu araç yalnızca tarayıcınızda **zaten size görünür olan verileri** okur.
-
-- ✅ Hiçbir veri harici sunucuya gönderilmez
-- ✅ API çağrısı yapılmaz — her şey yerel çalışır
-- ✅ Tarayıcı eklentisi gerekmez
-- ⚠️ Otomatik scraping Instagram Hizmet Şartları'nı ihlal edebilir
-
-Geliştirici, bu aracın kullanımından doğacak sonuçlardan **sorumlu değildir**.
-
----
-
-## 🤝 Katkı
-
-Katkılar memnuniyetle karşılanır.
-
-1. Projeyi fork'layın
-2. Feature branch oluşturun:
-   ```bash
-   git checkout -b feature/AmazingFeature
-   ```
-3. Değişiklikleri commit edin:
-   ```bash
-   git commit -m "Add AmazingFeature"
-   ```
-4. Branch'i gönderin:
-   ```bash
-   git push origin feature/AmazingFeature
-   ```
-5. Pull Request açın
-
----
-
-## 👨‍💻 Geliştirici
+## 👨‍💻 Yazar
 
 **Miabeyefendi**
 - GitHub: [@Miabeyefendi](https://github.com/Miabeyefendi)
-- Proje: **InstaDM-Scraper** (Instagram DM Scraper)
+- Proje: **InstaDM-Scraper**
 
 *Gizlilik için tasarlandı, sadelik için inşa edildi.*
