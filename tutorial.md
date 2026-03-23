@@ -1,19 +1,18 @@
-```markdown
 # 📘 InstaDM-Scraper V2: Technical Tutorial / Teknik Rehber / Guía Técnica
 
 Welcome to the technical documentation for InstaDM-Scraper V2. Choose your language below to continue:
 Bu teknik rehbere hoş geldiniz. Devam etmek için aşağıdan dilinizi seçin:
 Bienvenido a la documentación técnica. Elija su idioma a continuación para continuar:
 
-- [🇬🇧 English Version](#-english-version)
-- [🇹🇷 Türkçe Versiyon](#-türkçe-versiyon)
-- [🇪🇸 Versión en Español](#-versión-en-español)
+- [🇬🇧 English Version](#English-version)
+- [🇹🇷 Türkçe Versiyon](#Türkçe-versiyon)
+- [🇪🇸 Versión en Español](#Versión-en-español)
 
 ---
 
 <br><br>
-
-# 🇬🇧 English Version
+🇬🇧 
+#English Version
 
 Welcome to the technical deep-dive for **InstaDM-Scraper V2**. This document explains how the script evolved from a simple console output to a full-fledged Dashboard, how it intercepts network requests, and how it captures hidden media (Reel MP4s, Audio files) directly from Instagram.
 
@@ -98,8 +97,8 @@ Traditional web scraping tools require a backend server. V2, however, converts a
 ---
 
 <br><br>
-
-# 🇹🇷 Türkçe Versiyon
+🇹🇷 
+#Türkçe Versiyon
 
 **InstaDM-Scraper V2** teknik derinlemesine inceleme rehberine hoş geldiniz. Bu doküman; betiğin basit bir konsol çıktısından nasıl tam donanımlı bir Dashboard'a (Arayüz) dönüştüğünü, ağ isteklerini nasıl dinlediğini ve Instagram'ın gizli medyalarını nasıl yakaladığını açıklar.
 
@@ -184,8 +183,8 @@ Geleneksel web kazıma (scraping) araçları sunucuya ihtiyaç duyar. V2 ise yak
 ---
 
 <br><br>
-
-# 🇪🇸 Versión en Español
+🇪🇸 
+#Versión en Español
 
 Bienvenido al análisis técnico profundo de **InstaDM-Scraper V2**. Este documento explica cómo el script evolucionó de una simple salida de consola a un Dashboard completo, cómo intercepta las solicitudes de red y cómo captura medios ocultos (MP4 de Reels, archivos de audio) directamente desde Instagram.
 
