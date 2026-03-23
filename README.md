@@ -1,163 +1,108 @@
-## Export Instagram DMs Directly from Your Browser — No API, No Extension
-Want to **export your Instagram direct messages** without waiting 24 hours for Instagram's data download? **InstaDM-Scraper** is a lightweight, browser-based **Instagram DM exporter** that runs directly in your DevTools Console. Developed by **@miabeyefendi**, it handles Instagram's virtual scroll, detects sent/received messages by analyzing DOM rendering, and outputs a clean chronological chat log with timestamps, story replies, reactions, and media labels.
+# 📨 InstaDM-Scraper V2: Ultimate Instagram DM Toolkit | By: @miabeyefendi
 
-# 📨 InstaDM-Scraper: Browser Console Instagram DM Exporter | By: @miabeyefendi
+## Export, Capture, and Transcribe Instagram DMs with a Professional Dashboard — No Extension, No API
+**InstaDM-Scraper V2** is a massive evolution of the original browser-based exporter. It transforms from a simple console script into a full-featured **Interactive Dashboard** injected directly into your Instagram DM page. 
+
+Developed by **@miabeyefendi**, V2 now features **Live Media Interception**, **Localized Outputs (EN/TR/ES)**, **Audio-to-Text Transcription**, and **Binary ZIP Exports**. It bypasses Instagram's 24-hour data wait time by scraping directly from your active session with a user-friendly UI.
 
 [![JavaScript](https://img.shields.io/badge/JavaScript-ES2020+-F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 [![Platform](https://img.shields.io/badge/Platform-Browser_Console-4285F4.svg?style=for-the-badge&logo=googlechrome&logoColor=white)](https://github.com/Miabeyefendi/InstaDM-Scraper)
+[![Localization](https://img.shields.io/badge/Languages-EN%20|%20TR%20|%20ES-rebeccapurple.svg?style=for-the-badge)](https://github.com/Miabeyefendi/InstaDM-Scraper)
 [![No API](https://img.shields.io/badge/API-Not_Required-success.svg?style=for-the-badge)](https://github.com/Miabeyefendi/InstaDM-Scraper)
-[![License: GPL-3.0](https://img.shields.io/badge/License-GPL--3.0-blue.svg?style=for-the-badge)](https://www.gnu.org/licenses/gpl-3.0)
 
-[TR | Türkçe Oku](README.tr.md) | [Technical Tutorial](tutorial.md)
-
-**InstaDM-Scraper** is a pure JavaScript tool that extracts your complete Instagram DM history directly from the browser.  
-Unlike Instagram's built-in data export (which takes 12-24 hours), this script runs instantly in your DevTools Console and outputs a clean, formatted chat log.
+[TR | Türkçe Oku](README.tr.md) | [ES | Leer en Español](README.es.md)
 
 ---
 
-## 🔥 Why InstaDM-Scraper?
+## 🔥 Why Upgrade to V2?
 
-Instagram's official data download is slow and the format is messy.  
-**InstaDM-Scraper** gives you instant results with a structured output.
+V1 was a script; **V2 is a toolkit.** 
 
-- 🚫 **No API Keys Required**  
-  Runs entirely in your browser — no tokens, no OAuth, no third-party services.
+- 🖥️ **Interactive Overlay UI**  
+  No more looking at the raw console. Control your scan, filter messages, and choose export options from a modern dashboard injected into the page.
 
-- 🔄 **Virtual Scroll Compatible**  
-  Instagram uses virtual scrolling (only ~10-15 messages exist in DOM at a time). This script scrolls through the entire chat and captures every message by monitoring DOM mutations.
+- 🌍 **Fully Localized Exports**  
+  The tool and the output files now respect your language choice. If set to English, headers are `Sent:`. If Turkish, `Gönderilen:`. If Spanish, `Enviado:`.
 
-- 📅 **Chronological Output**  
-  Messages are exported from oldest to newest with accurate timestamps.
+- 📻 **Live Media Capture (Hooks)**  
+  V2 intercepts network requests (XHR/Fetch) and monitors the `PerformanceObserver` to catch direct links for Reels, Voice Messages, and high-res images that aren't usually visible in the DOM.
 
-- 🎯 **Smart Sender Detection**  
-  Identifies sent vs. received messages by analyzing `role="presentation"` balloon background colors (`rgb(74,93,249)` = sent, `rgb(37,41,46)` = received).
+- 📦 **Binary ZIP Export**  
+  Don't just export text. V2 can attempt to download the physical media files (Images, Audio, Reel MP4s) and package them into a single structured ZIP file.
+
+- 🎙️ **Voice-to-Text (Transcription)**  
+  A specialized mode that automates the collection of Instagram's internal transcripts for voice messages.
 
 ---
 
 ## ✨ Core Features
 
-- **Full Chat Export**  
-  Scrolls through the entire conversation history and captures every message.
+- **Multi-Format Export**  
+  Download your chat history as **JSON**, **TXT**, **Markdown (MD)**, or a full **ZIP** archive.
 
-- **Story Reply Detection**  
-  Identifies and labels story replies (`"hikayesine yanıt verdi"`, `"hikayesine ifade bıraktı"`).
+- **Deep Media Discovery**  
+  Automatically resolves Reel metadata to find direct MP4 video URLs and thumbnails.
 
-- **Reaction/Like Detection**  
-  Detects emoji reactions (❤️, 😂, 🔥, etc.) on messages via `aria-label` and small emoji spans.
+- **Smart Filtering & Search**  
+  Instantly find messages using keywords or filter the timeline by "Images Only", "Audio Only", or "Reels Only".
 
-- **Media Labels**  
-  Tags shared content as `[Görsel]`, `[Reels]`, or `[Hikaye Görseli]` by analyzing `<a href>` paths (`/reel/`, `/stories/`).
+- **Message Selection**  
+  Export the entire conversation or use checkboxes to select only specific messages you need.
 
-- **Timestamp Extraction**  
-  Parses date/time from gray-colored spans matching Turkish date formats (`1 Oca 2026 00:30`, `Paz 21:14`, etc.).
-
-- **Auto-Download**  
-  Automatically downloads the result as a `.txt` file.
+- **Privacy-First Design**  
+  Runs 100% locally in your browser. Your data never leaves your computer. No third-party servers, no extensions, no analytics.
 
 ---
 
 ## 🛠️ Getting Started
 
-### Prerequisites
-- Any Chromium-based browser (Chrome, Edge, Brave, etc.)
-- An active Instagram session (logged in on `instagram.com`)
-
 ### Usage
 
-1. Open a DM conversation on Instagram Web:
-   ```
-   https://www.instagram.com/direct/t/XXXXXXXXX/
-   ```
-
-2. Open DevTools (`F12` or `Ctrl+Shift+I`)
-
-3. Go to the **Console** tab
-
-4. Copy the entire content of `instadm-scraper.js` and paste it into the Console
-
-5. Press **Enter** and wait — the script will:
-   - Scroll to the oldest messages
-   - Slowly scroll down, capturing messages at each step
-   - Monitor DOM changes to ensure no messages are skipped
-   - Download the result as a `.txt` file
+1. Open an Instagram DM conversation: `https://www.instagram.com/direct/t/XXXXXXXXX/`
+2. Open DevTools (**F12** or **Ctrl+Shift+I**) and click the **Console** tab.
+3. Paste the entire content of `instadm-scraper-v2.js` and press **Enter**.
+4. The **InstaDM Dashboard** will appear on your screen.
+5. Select your language (EN/TR/ES) and click **"Start Scan"**.
+6. Wait for the auto-scroller to finish. Once done, use the sidebar to filter, search, or download your data.
 
 ---
 
-## 📋 Output Format
+## 📋 Localized Output Example (EN vs TR)
 
-```
-Tarih - Saat: 19 Ara 2024 23:12
-Hikaye yanıtı: @xxxxxxx'un hikayesine ifade bıraktı [Hikaye Görseli]
----
-Tarih - Saat: 12 May 2025 00:02
-Hikaye yanıtı: Nice mutlu yaşlarına [Görsel]
-Gelen: Tesekkur ederiimmmmmmmmmmmmmmmm 😊
-Gönderilen: Ricalar -❤️beğenildi
----
-Tarih - Saat: 5 Oca 2026 00:38
-[Reels]
-Gönderilen: Bunu izleyince içim bi yumuşadı sebepsizce... -❤️beğenildi
-Gelen: Benimde aşkım
-```
+V2 adapts its labels based on your selected UI language:
+
+| Language | Date Header | Sender Label | Media Tag |
+|---|---|---|---|
+| **English** | `Date: 12 May 2025` | `Sent:` / `Received:` | `[Image]`, `[Audio]` |
+| **Turkish** | `Tarih: 12 May 2025` | `Gönderilen:` / `Gelen:` | `[Görsel]`, `[Ses]` |
+| **Spanish** | `Fecha: 12 May 2025` | `Enviado:` / `Recibido:` | `[Imagen]`, `[Audio]` |
 
 ---
 
-## 🔧 How It Works — Technical Overview
+## 🔧 Technical Overview (V2 Enhancements)
 
-| Challenge | Solution |
+| Feature | Technical Implementation |
 |---|---|
-| Instagram uses **virtual scroll** — only visible messages exist in DOM | Scrolls step by step, waits for DOM mutations before scraping |
-| `scrollTop` is **inverted** (0 = bottom, negative = top) | Navigates from most negative → 0 (old → new) |
-| No `role="row"` elements | Uses `role="presentation"` balloons as message containers |
-| Sent vs. received detection | Analyzes background color of `role="presentation"` div |
-| Timestamps hidden in gray spans | Color analysis (`rgb ~140-170`) + Turkish date regex |
-| Reactions are tiny emoji spans | Searches parent chain up to 8 levels for small emoji spans |
+| **Network Interception** | Overrides `window.fetch` and `XMLHttpRequest` to capture media metadata. |
+| **Blob Handling** | Hooks into `URL.createObjectURL` to identify voice message blobs. |
+| **ZIP Generation** | Uses a zero-dependency custom ZIP builder with CRC32 checksums. |
+| **Reel Resolver** | Asynchronously fetches Reel pages to extract `og:video` and `og:image` tags. |
+| **Adaptive UI** | Built with pure CSS/JS Blur-morphism, responsive to viewport changes. |
 
 ---
 
 ## 📈 Version History
 
+**v2.0.0 (Latest)**
+- Added Interactive Overlay UI.
+- Multi-language support (EN, TR, ES) for UI and Output.
+- Added ZIP, JSON, and Markdown export formats.
+- Real-time media interception (Voice, Reels, Images).
+- Voice message transcript extraction tool.
+- Selection, Search, and Category filtering.
+
 **v1.0.0**
-- Full virtual scroll support with DOM mutation monitoring
-- Sent/received detection via background color analysis
-- Story reply, reaction, and media label detection
-- Turkish date format parsing
-- Auto-download as `.txt`
-
----
-
-## ⚠️ Disclaimer & Privacy
-
-InstaDM-Scraper is developed for **personal and educational purposes only**.  
-This tool only reads data that is **already visible to you** in your own browser.
-
-- ✅ No data is sent to any external server
-- ✅ No API calls — everything runs locally
-- ✅ No browser extension required
-- ⚠️ Automated scraping may violate Instagram's Terms of Service
-
-The developer is **not responsible** for any consequences of using this tool.
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome.
-
-1. Fork the project
-2. Create your feature branch:
-   ```bash
-   git checkout -b feature/AmazingFeature
-   ```
-3. Commit your changes:
-   ```bash
-   git commit -m "Add AmazingFeature"
-   ```
-4. Push to the branch:
-   ```bash
-   git push origin feature/AmazingFeature
-   ```
-5. Open a Pull Request
+- Initial release. Console-based .txt exporter.
 
 ---
 
@@ -165,6 +110,6 @@ Contributions are welcome.
 
 **Miabeyefendi**
 - GitHub: [@Miabeyefendi](https://github.com/Miabeyefendi)
-- Project: **InstaDM-Scraper** (Instagram DM Scraper)
+- Project: **InstaDM-Scraper**
 
 *Built for privacy, designed for simplicity.*
