@@ -1,115 +1,224 @@
-# 📨 InstaDM-Scraper V2: Ultimate Instagram DM Toolkit | By: @miabeyefendi
+<div align="center">
 
-## Export, Capture, and Transcribe Instagram DMs with a Professional Dashboard — No Extension, No API
-**InstaDM-Scraper V2** is a massive evolution of the original browser-based exporter. It transforms from a simple console script into a full-featured **Interactive Dashboard** injected directly into your Instagram DM page. 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./assets/logo-dark.svg">
+  <img src="./assets/logo.svg" width="120" alt="IG-DMKeep">
+</picture>
 
-Developed by **@miabeyefendi**, V2 now features **Live Media Interception**, **Localized Outputs (EN/TR/ES)**, **Audio-to-Text Transcription**, and **Binary ZIP Exports**. It bypasses Instagram's 24-hour data wait time by scraping directly from your active session with a user-friendly UI.
+# IG-DMKeep
 
-[![JavaScript](https://img.shields.io/badge/JavaScript-ES2020+-F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-[![Platform](https://img.shields.io/badge/Platform-Browser_Console-4285F4.svg?style=for-the-badge&logo=googlechrome&logoColor=white)](https://github.com/Miabeyefendi/InstaDM-Scraper)
-[![Localization](https://img.shields.io/badge/Languages-EN%20|%20TR%20|%20ES-rebeccapurple.svg?style=for-the-badge)](https://github.com/Miabeyefendi/InstaDM-Scraper)
-[![No API](https://img.shields.io/badge/API-Not_Required-success.svg?style=for-the-badge)](https://github.com/Miabeyefendi/InstaDM-Scraper)
+**Save your own Instagram conversations before you lose them. Full history with timestamps, senders, reactions and media, exported to JSON, TXT, Markdown or a ZIP. Everything happens in your browser.**
 
-[TR | Türkçe Oku](README.tr.md) | [ES | Leer en Español](README.es.md)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-A78BFA?style=for-the-badge&logo=gnu&logoColor=white)](./LICENSE)
+[![Version](https://img.shields.io/github/v/release/Miabeyefendi/IG-DMKeep?style=for-the-badge&color=F59E0B&label=version)](https://github.com/Miabeyefendi/IG-DMKeep/releases/latest)
+[![Platform](https://img.shields.io/badge/Browser_Console-1E293B?style=for-the-badge&logo=googlechrome&logoColor=white)](#-installation)
+[![Status](https://img.shields.io/badge/status-active-22C55E?style=for-the-badge)](#)
+[![Author](https://img.shields.io/badge/by-Miabeyefendi-0EA5E9?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Miabeyefendi)
 
----
+**English** · [Türkçe](./README_TR.md) · [Español](./README_ES.md) · [简体中文](./README_ZH.md) · [Русский](./README_RU.md)
 
-## 🔥 Why Upgrade to V2?
+[Install](#-installation) · [Features](#-highlights) · [Usage](#-quick-start) · [Tutorial](./TUTORIAL.md) · [Changelog](./CHANGELOG.md)
 
-V1 was a script; **V2 is a toolkit.** 
+<a href="https://github.com/Miabeyefendi/IG-DMKeep/releases/latest">
+  <img src="./assets/btn-download.svg" height="52" alt="Download the latest release">
+</a>
+<a href="./TUTORIAL.md">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/btn-tutorial-dark.svg">
+    <img src="./assets/btn-tutorial.svg" height="52" alt="Read the tutorial">
+  </picture>
+</a>
 
-- 🖥️ **Interactive Overlay UI**  
-  No more looking at the raw console. Control your scan, filter messages, and choose export options from a modern dashboard injected into the page.
-
-- 🌍 **Fully Localized Exports**  
-  The tool and the output files now respect your language choice. If set to English, headers are `Sent:`. If Turkish, `Gönderilen:`. If Spanish, `Enviado:`.
-
-- 📻 **Live Media Capture (Hooks)**  
-  V2 intercepts network requests (XHR/Fetch) and monitors the `PerformanceObserver` to catch direct links for Reels, Voice Messages, and high-res images that aren't usually visible in the DOM.
-
-- 📦 **Binary ZIP Export**  
-  Don't just export text. V2 can attempt to download the physical media files (Images, Audio, Reel MP4s) and package them into a single structured ZIP file.
-
-- 🎙️ **Voice-to-Text (Transcription)**  
-  A specialized mode that automates the collection of Instagram's internal transcripts for voice messages.
+</div>
 
 ---
 
-## ✨ Core Features
+## ✨ Highlights
 
-- **Multi-Format Export**  
-  Download your chat history as **JSON**, **TXT**, **Markdown (MD)**, or a full **ZIP** archive.
-
-- **Deep Media Discovery**  
-  Automatically resolves Reel metadata to find direct MP4 video URLs and thumbnails.
-
-- **Smart Filtering & Search**  
-  Instantly find messages using keywords or filter the timeline by "Images Only", "Audio Only", or "Reels Only".
-
-- **Message Selection**  
-  Export the entire conversation or use checkboxes to select only specific messages you need.
-
-- **Privacy-First Design**  
-  Runs 100% locally in your browser. Your data never leaves your computer. No third-party servers, no extensions, no analytics.
+- **Your data stays yours** - everything runs locally in your browser. No server, no extension, no API key, no analytics. Nothing about your conversations leaves your machine.
+- **An overlay, not a wall of console output** - a panel is injected into the page where you control the scan, filter the timeline and choose what to export.
+- **Four export formats** - JSON for processing, TXT for reading, Markdown for publishing, or a ZIP that packages the media alongside the text.
+- **Media that the page does not show you** - the tool watches network traffic and the `PerformanceObserver` to recover direct links for reels, voice messages and full-resolution images that never appear in the DOM.
+- **Voice messages as text** - a dedicated mode collects Instagram's own transcripts for voice notes so the export is searchable.
+- **Filter and search before exporting** - find messages by keyword, or narrow the timeline to images, audio or reels only.
+- **Export a selection, not just everything** - tick the messages you actually want.
+- **Output in your language** - the export headers follow your language choice, so a Turkish export reads `Gönderilen:` rather than `Sent:`.
+- **Survives virtual scrolling** - Instagram unloads messages as you scroll; the scan is built around that instead of fighting it.
 
 ---
 
-## 🛠️ Getting Started
+## 📦 Installation
 
-### Usage
+### Requirements
 
-1. Open an Instagram DM conversation: `https://www.instagram.com/direct/t/XXXXXXXXX/`
-2. Open DevTools (**F12** or **Ctrl+Shift+I**) and click the **Console** tab.
-3. Paste the entire content of `instadm-scraper-v2.js` and press **Enter**.
-4. The **InstaDM Dashboard** will appear on your screen.
-5. Select your language (EN/TR/ES) and click **"Start Scan"**.
-6. Wait for the auto-scroller to finish. Once done, use the sidebar to filter, search, or download your data.
-
----
-
-## 📋 Localized Output Example (EN vs TR)
-
-V2 adapts its labels based on your selected UI language:
-
-| Language | Date Header | Sender Label | Media Tag |
-|---|---|---|---|
-| **English** | `Date: 12 May 2025` | `Sent:` / `Received:` | `[Image]`, `[Audio]` |
-| **Turkish** | `Tarih: 12 May 2025` | `Gönderilen:` / `Gelen:` | `[Görsel]`, `[Ses]` |
-| **Spanish** | `Fecha: 12 May 2025` | `Enviado:` / `Recibido:` | `[Imagen]`, `[Audio]` |
-
----
-
-## 🔧 Technical Overview (V2 Enhancements)
-
-| Feature | Technical Implementation |
+| | |
 |---|---|
-| **Network Interception** | Overrides `window.fetch` and `XMLHttpRequest` to capture media metadata. |
-| **Blob Handling** | Hooks into `URL.createObjectURL` to identify voice message blobs. |
-| **ZIP Generation** | Uses a zero-dependency custom ZIP builder with CRC32 checksums. |
-| **Reel Resolver** | Asynchronously fetches Reel pages to extract `og:video` and `og:image` tags. |
-| **Adaptive UI** | Built with pure CSS/JS Blur-morphism, responsive to viewport changes. |
+| Browser | Chrome, Edge or Firefox on desktop |
+| Account | Your own Instagram account, with a DM thread open |
+| Install | None. This is a console script. |
+
+![JavaScript](https://img.shields.io/badge/JavaScript-1E293B?style=for-the-badge&logo=javascript&logoColor=A78BFA)
+![Instagram](https://img.shields.io/badge/Instagram-1E293B?style=for-the-badge&logo=instagram&logoColor=A78BFA)
+
+### Pick a version
+
+| Version | File | What it is |
+|---|---|---|
+| **v2** | [`instadm-scraper-v2.js`](./instadm-scraper-v2.js) | The current one. Overlay UI, media capture, ZIP export, transcription. |
+| **v1** | [`instadm-scraper.js`](./instadm-scraper.js) | The original. Console output only, text export, 342 lines. Kept for anyone who wants something small they can read end to end. |
+
+<details>
+<summary><b>Prefer to clone?</b></summary>
+
+```bash
+git clone https://github.com/Miabeyefendi/IG-DMKeep.git
+```
+
+No build step and no dependencies.
+
+</details>
 
 ---
 
-## 📈 Version History
+## 🚀 Quick Start
 
-**v2.0.0 (Latest)**
-- Added Interactive Overlay UI.
-- Multi-language support (EN, TR, ES) for UI and Output.
-- Added ZIP, JSON, and Markdown export formats.
-- Real-time media interception (Voice, Reels, Images).
-- Voice message transcript extraction tool.
-- Selection, Search, and Category filtering.
+1. Open [www.instagram.com](https://www.instagram.com/) on desktop and log in.
+2. **Open the DM thread you want to save.** The script reads the conversation that is currently on screen, so this step is not optional.
+3. Open the console. `F12` or `Ctrl + Shift + J` on Chrome and Edge, `Ctrl + Shift + K` on Firefox. On a Mac, `Cmd + Option + J`.
+4. Paste [`instadm-scraper-v2.js`](./instadm-scraper-v2.js) in full and press Enter.
+5. The overlay appears. Start the scan, wait for it to walk back through the thread, then choose an export format.
 
-**v1.0.0**
-- Initial release. Console-based .txt exporter.
+> **If you get "Conversation container not found", you are not inside a thread.** Opening the inbox is not enough. Click into the actual conversation first, wait for the messages to render, then paste the script.
 
 ---
 
-## 👨‍💻 Author
+## ⚙️ Configuration
 
-**Miabeyefendi**
+Everything is set in the overlay, nothing is edited in the file.
+
+| Group | Option | What it does |
+|---|---|---|
+| Export | Format | JSON, TXT, Markdown or ZIP |
+| Export | Selection | The whole conversation, or only the messages you tick |
+| Export | Language | Language of the headers written into the export file |
+| Filter | Keyword | Show only messages containing a word or phrase |
+| Filter | Type | Images only, audio only, or reels only |
+| Media | Download media | Fetch the actual files and package them into the ZIP |
+| Media | Transcription | Collect Instagram's transcripts for voice messages |
+
+How each of these works underneath, and what to do when one of them misbehaves, is in the [tutorial](./TUTORIAL.md).
+
+---
+
+## 📖 Documentation
+
+- [**Tutorial**](./TUTORIAL.md) - how the capture, sender detection, transcription and ZIP engines actually work
+- [**Changelog**](./CHANGELOG.md) - what changed in each release
+- [**Contributing**](./CONTRIBUTING.md) - how to send a change
+- [**Security**](./SECURITY.md) - how to report a vulnerability privately
+
+---
+
+## ❓ FAQ
+
+<details>
+<summary><b>"Conversation container not found. Open a DM thread first."</b></summary>
+
+The script did not find a rendered conversation on the page. Being logged in or sitting on the inbox list is not enough. Open the specific thread, wait until the messages are visible, and only then paste the script. If the thread is open and you still see this, Instagram has changed its markup; open an issue with your browser version.
+
+</details>
+
+<details>
+<summary><b>Does this send my messages anywhere?</b></summary>
+
+No. Everything runs in the page you already have open, and the export is written by your browser to your own disk. There is no server, no extension and no analytics. That is the entire reason this is a console script.
+
+</details>
+
+<details>
+<summary><b>Can I export someone else's DMs?</b></summary>
+
+No. The script can only read what your own logged-in session can already display. It is a way to keep a copy of your own conversations, nothing more.
+
+</details>
+
+<details>
+<summary><b>Why does the ZIP take so long?</b></summary>
+
+Because it downloads the actual media files one by one and packages them in the browser. A long thread with many reels and voice notes is a lot of traffic. Text-only exports are close to instant.
+
+</details>
+
+<details>
+<summary><b>Some old messages are missing.</b></summary>
+
+Instagram unloads messages as you scroll, so the scan has to walk back through the thread to bring them into the page. Let it finish. On very long conversations this takes a while.
+
+</details>
+
+<details>
+<summary><b>Should I use v1 or v2?</b></summary>
+
+v2, unless you specifically want something small enough to read in one sitting. v1 is 342 lines and exports plain text; v2 is the full tool.
+
+</details>
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome. Read [CONTRIBUTING.md](./CONTRIBUTING.md) and [CODE_OF_CONDUCT.md](./CODE_OF_CONDUCT.md) first. By contributing you agree to license your work under the AGPL-3.0.
+
+<div align="center">
+<a href="https://github.com/Miabeyefendi/IG-DMKeep/issues/new?template=bug_report.yml">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/btn-report-bug-dark.svg">
+    <img src="./assets/btn-report-bug.svg" height="52" alt="Report a bug">
+  </picture>
+</a>
+<a href="https://github.com/Miabeyefendi/IG-DMKeep/stargazers">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/btn-star-dark.svg">
+    <img src="./assets/btn-star.svg" height="52" alt="Star this repository">
+  </picture>
+</a>
+</div>
+
+---
+
+## 🛡️ Security
+
+Found a vulnerability? Do not open a public issue. Follow the private process in [SECURITY.md](./SECURITY.md).
+
+---
+
+## 📜 License
+
+IG-DMKeep is licensed under the **GNU Affero General Public License v3.0 (AGPL-3.0)**, together with the supplemental terms in the [NOTICE](./NOTICE) file. In short:
+
+- You may use, study, modify, redistribute and even make money with this work for free, **as long as** you keep the complete source code available under the AGPL-3.0, including for any hosted, SaaS or network use (AGPL Section 13), and you preserve the author attribution below.
+- To use this work in a closed-source or proprietary product, or to run it as a closed SaaS, you need a **separate written commercial license**, which may include a royalty or revenue share. See [NOTICE](./NOTICE), Section 8, and contact me.
+
+### Attribution (required)
+
+Per AGPL-3.0 Section 7(b), the following attribution must be preserved, visibly and unmodified, in any copy, fork or deployment of this project:
+
+> **Miabeyefendi (Mustafa Ihsan Albayrak)** - https://github.com/Miabeyefendi
+
+### Disclaimer
+
+This software is provided "as is", without warranty of any kind. You run it entirely at your own risk and are solely responsible for your own use, including compliance with the terms of service of any third-party platform it interacts with, notably Instagram. Instagram is not affiliated with or endorsing this project; its name and trademarks belong to their owner. The author accepts no liability for account bans, data loss or any other damages, to the maximum extent permitted by applicable law. Full terms are in the [LICENSE](./LICENSE) and [NOTICE](./NOTICE) files.
+
+---
+
+## 📬 Contact
+
 - GitHub: [@Miabeyefendi](https://github.com/Miabeyefendi)
-- Project: **InstaDM-Scraper**
+- For commercial licensing or revenue-sharing enquiries, reach me through my GitHub profile.
 
-*Built for privacy, designed for simplicity.*
+<div align="center">
+<br/>
+<img src="./assets/divider.svg" width="100%" height="3" alt="">
+<br/>
+<sub>Built by <b><a href="https://github.com/Miabeyefendi">Miabeyefendi</a></b></sub>
+</div>

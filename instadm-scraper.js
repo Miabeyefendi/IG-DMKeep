@@ -1,7 +1,7 @@
 // ============================================
 // InstaDM-Scraper v1.0.0
 // By: @miabeyefendi
-// https://github.com/Miabeyefendi/InstaDM-Scraper
+// https://github.com/Miabeyefendi/IG-DMKeep
 //
 // Instagram DM Exporter — Browser Console Script
 // Paste this into DevTools Console on a DM page
@@ -195,7 +195,7 @@
 
   // ===== MAIN =====
   console.log('🚀 InstaDM-Scraper v1.0.0 by @miabeyefendi');
-  console.log('📦 https://github.com/Miabeyefendi/InstaDM-Scraper');
+  console.log('📦 https://github.com/Miabeyefendi/IG-DMKeep');
 
   const container = findContainer();
   if (!container) { console.error('❌ Container not found! Open a DM conversation first.'); return; }

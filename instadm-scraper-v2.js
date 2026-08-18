@@ -1,7 +1,7 @@
 // ============================================
-// InstaDM-Scraper v2.0.0-beta
+// IG-DMKeep v2.0.0
 // By: @miabeyefendi
-// https://github.com/Miabeyefendi/InstaDM-Scraper
+// https://github.com/Miabeyefendi/IG-DMKeep
 //
 // Instagram DM Exporter - Overlay UI + Media Capture
 // Paste this into DevTools Console on a DM page
@@ -12,7 +12,7 @@
 
   const APP_ID = 'instadm-scraper-v2-overlay';
   const VERSION = '2.0.0-beta';
-  const GITHUB_URL = 'https://github.com/Miabeyefendi/InstaDM-Scraper';
+  const GITHUB_URL = 'https://github.com/Miabeyefendi/IG-DMKeep';
   const CREATOR_URL = 'https://github.com/Miabeyefendi';
 
   if (document.getElementById(APP_ID)) {
