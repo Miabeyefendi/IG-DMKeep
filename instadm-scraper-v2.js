@@ -834,7 +834,13 @@
     };
   }
 
-  function findContainer() {
+  // Message bubbles are [role="presentation"] on most accounts. Some accounts get
+  // a layout where each message is a [role="article"] inside a [role="group"]
+  // and nothing carries "presentation", so the selector is detected per page.
+  const BUBBLE_SELECTORS = ['[role="presentation"]', '[role="article"]'];
+  let bubbleSel = BUBBLE_SELECTORS[0];
+
+  function findContainerFor(selector) {
     let best = null;
     let bestDepth = -1;
     // Short threads fit on one screen and never overflow, so also remember the
@@ -851,7 +857,7 @@
       const overflows = div.scrollHeight > div.clientHeight + 200;
       const scrollable = (style.overflowY === 'auto' || style.overflowY === 'scroll') && div.clientHeight > 100;
       if (!overflows && !scrollable) return;
-      if (!div.querySelector('[role="presentation"]')) return;
+      if (!div.querySelector(selector)) return;
 
       let depth = 0;
       let node = div;
@@ -872,9 +878,20 @@
     return best || fallback;
   }
 
+  function findContainer() {
+    for (const selector of BUBBLE_SELECTORS) {
+      const found = findContainerFor(selector);
+      if (found) {
+        bubbleSel = selector;
+        return found;
+      }
+    }
+    return null;
+  }
+
   function getVisibleBubbleTexts(container) {
     const texts = new Set();
-    container.querySelectorAll('[role="presentation"]').forEach(bubble => {
+    container.querySelectorAll(bubbleSel).forEach(bubble => {
       const rect = bubble.getBoundingClientRect();
       if (!rect.height || rect.top > window.innerHeight || rect.bottom < 0) return;
       bubble.querySelectorAll('div[dir="auto"], span[dir="auto"]').forEach(node => {
@@ -903,7 +920,7 @@
   function isDateMarkerNode(node, containerRect) {
     if (!node || !node.getBoundingClientRect) return false;
     if (node.closest('#' + APP_ID)) return false;
-    if (node.closest('[role="presentation"]')) return false;
+    if (node.closest(bubbleSel)) return false;
     if (node.closest('header, button, a')) return false;
 
     const rect = node.getBoundingClientRect();
@@ -1328,7 +1345,7 @@
     if (items.filter(i => i.type === 'date').length === 0) {
       container.querySelectorAll('span, div').forEach(s => {
         if (s.closest('#' + APP_ID)) return;
-        if (s.closest('[role="presentation"]')) return;
+        if (s.closest(bubbleSel)) return;
         const rect = s.getBoundingClientRect();
         if (!rect.height || rect.top > window.innerHeight || rect.bottom < 0) return;
         const text = safeText(s.textContent);
@@ -1343,7 +1360,7 @@
     container.querySelectorAll('a[href]').forEach(anchor => {
       const rect = anchor.getBoundingClientRect();
       if (!rect.height || rect.top > window.innerHeight || rect.bottom < 0) return;
-      if (anchor.closest('[role="presentation"]')) return;
+      if (anchor.closest(bubbleSel)) return;
 
       const href = absoluteUrl(anchor.getAttribute('href') || '');
       if (!href) return;
@@ -1363,7 +1380,7 @@
     container.querySelectorAll('img').forEach(img => {
       const rect = img.getBoundingClientRect();
       if (!rect.height || rect.top > window.innerHeight || rect.bottom < 0) return;
-      if (img.closest('[role="presentation"]')) return;
+      if (img.closest(bubbleSel)) return;
 
       const src = absoluteUrl(img.currentSrc || img.src || '');
       if (!src) return;
@@ -1380,7 +1397,7 @@
       registerResource(src, 'standalone-image', { hint: 'image' });
     });
 
-    container.querySelectorAll('[role="presentation"]').forEach(bubble => {
+    container.querySelectorAll(bubbleSel).forEach(bubble => {
       const rect = bubble.getBoundingClientRect();
       if (!rect.height || rect.top > window.innerHeight || rect.bottom < 0) return;
 
@@ -1440,7 +1457,7 @@
           headerArea.querySelectorAll('a[href]').forEach(node => {
             if (username) return;
             if (node.closest('#' + APP_ID)) return;
-            if (node.closest('[role="presentation"]')) return;
+            if (node.closest(bubbleSel)) return;
             const href = node.getAttribute('href') || '';
             const match = href.match(/^\/([a-zA-Z0-9._]+)\/?$/);
             if (!match) return;
@@ -1805,7 +1822,7 @@
     const scrollBefore = container.scrollTop;
     const previousUrl = window.location.href;
     const capturedUrls = new Set();
-    const bubble = selected.group.querySelector('[role="presentation"]') || selected.target.closest('[role="presentation"]') || selected.group;
+    const bubble = selected.group.querySelector(bubbleSel) || selected.target.closest(bubbleSel) || selected.group;
     const bubbleText = extractBubbleText(bubble).join(' ');
     const bubbleTop = Math.round(bubble.getBoundingClientRect().top);
     const bubbleTimestamp = extractTimestampNearBubble(bubble);
@@ -2049,7 +2066,7 @@
   }
 
   function buildTranscriptEntry(group, containerRect, transcriptText) {
-    const bubble = group.querySelector('[role="presentation"]') || group;
+    const bubble = group.querySelector(bubbleSel) || group;
     const durationMatch = safeText(group.textContent || '').match(/\b\d{1,2}:\d{2}\b/);
     return {
       direction: getDirectionLabel(detectIsSent(bubble, containerRect)),
@@ -2060,7 +2077,7 @@
   }
 
   function getTranscriptSignature(group, containerRect) {
-    const bubble = group.querySelector('[role="presentation"]') || group;
+    const bubble = group.querySelector(bubbleSel) || group;
     const groupText = safeText(group.textContent || '');
     const durationMatch = groupText.match(/\b\d{1,2}:\d{2}\b/);
     return [

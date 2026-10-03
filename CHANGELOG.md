@@ -10,6 +10,18 @@ All notable changes to **IG-DMKeep** are recorded here. The format follows
 
 ## [Unreleased]
 
+### Fixed
+
+- **"Conversation container not found" on accounts with a different message
+  layout** (issue #2). The script found message bubbles by `role="presentation"`.
+  Some accounts get a layout where every message is a `role="article"` inside a
+  `role="group"` and no element carries `presentation`, so nothing matched. The
+  bubble selector is now detected per page, with `presentation` first and
+  `article` as the fallback, and used for scanning, date detection and reel
+  capture alike.
+
+---
+
 ---
 
 ## [3.0.0] - 2026-10-03
