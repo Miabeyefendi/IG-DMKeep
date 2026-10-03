@@ -1,5 +1,5 @@
 // ============================================
-// IG-DMKeep v2.0.0
+// IG-DMKeep v2.0.1
 // By: @miabeyefendi
 // https://github.com/Miabeyefendi/IG-DMKeep
 //
@@ -11,7 +11,7 @@
   'use strict';
 
   const APP_ID = 'instadm-scraper-v2-overlay';
-  const VERSION = '2.0.0-beta';
+  const VERSION = '2.0.1';
   const GITHUB_URL = 'https://github.com/Miabeyefendi/IG-DMKeep';
   const CREATOR_URL = 'https://github.com/Miabeyefendi';
 
