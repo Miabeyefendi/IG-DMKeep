@@ -12,7 +12,7 @@ All notable changes to **IG-DMKeep** are recorded here. The format follows
 
 ---
 
-## [2.0.1] - 2026-10-03
+## [3.0.0] - 2026-10-03
 
 ### Changed
 
@@ -93,7 +93,7 @@ printed to the console and exported text; this one is a tool with a UI.
 
 ---
 
-[Unreleased]: https://github.com/Miabeyefendi/IG-DMKeep/compare/v2.0.1...HEAD
-[2.0.1]: https://github.com/Miabeyefendi/IG-DMKeep/compare/v2.0.0...v2.0.1
+[Unreleased]: https://github.com/Miabeyefendi/IG-DMKeep/compare/v3.0.0...HEAD
+[3.0.0]: https://github.com/Miabeyefendi/IG-DMKeep/compare/v2.0.0...v3.0.0
 [2.0.0]: https://github.com/Miabeyefendi/IG-DMKeep/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/Miabeyefendi/IG-DMKeep/releases/tag/v1.0.0
