@@ -38,6 +38,16 @@ All notable changes to **IG-DMKeep** are recorded here. The format follows
 - Documented the requirement that an actual DM thread must be open before the
   script runs. This was the cause of the "Conversation container not found"
   report in issue #1 and had never been written down.
+- **Short conversations failed with "Conversation container not found"** even
+  with the thread open (issue #2). The container search only accepted a
+  message list that overflowed by more than 200px, so a thread that fit on one
+  screen was never found. It now falls back to the scrollable message list
+  when nothing overflows.
+- **The minimized overlay still blocked the whole page.** Its invisible
+  full-screen box kept catching clicks and scrolling, so you could not open
+  another conversation or leave the current one. Only the visible panel takes
+  input now, and the minimized panel is a compact bar in the bottom-right
+  corner.
 
 ---
 

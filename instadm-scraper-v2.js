@@ -837,6 +837,10 @@
   function findContainer() {
     let best = null;
     let bestDepth = -1;
+    // Short threads fit on one screen and never overflow, so also remember the
+    // deepest scroll-styled div as a fallback for when nothing overflows.
+    let fallback = null;
+    let fallbackDepth = -1;
 
     document.querySelectorAll('div').forEach(div => {
       if (!div || !div.querySelector) return;
@@ -844,7 +848,9 @@
 
       const style = window.getComputedStyle(div);
       if (style.position === 'fixed') return;
-      if (div.scrollHeight <= div.clientHeight + 200) return;
+      const overflows = div.scrollHeight > div.clientHeight + 200;
+      const scrollable = (style.overflowY === 'auto' || style.overflowY === 'scroll') && div.clientHeight > 100;
+      if (!overflows && !scrollable) return;
       if (!div.querySelector('[role="presentation"]')) return;
 
       let depth = 0;
@@ -854,13 +860,16 @@
         node = node.parentElement;
       }
 
-      if (depth > bestDepth) {
+      if (overflows && depth > bestDepth) {
         bestDepth = depth;
         best = div;
+      } else if (!overflows && depth > fallbackDepth) {
+        fallbackDepth = depth;
+        fallback = div;
       }
     });
 
-    return best;
+    return best || fallback;
   }
 
   function getVisibleBubbleTexts(container) {
@@ -2980,10 +2989,11 @@
         z-index: 2147483647;
         font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
         color: #f5f5f7;
-        pointer-events: auto;
+        pointer-events: none;
       }
       #${APP_ID} * { box-sizing: border-box; }
       #${APP_ID} .idm-shell {
+        pointer-events: auto;
         height: calc(100vh - 32px);
         display: flex;
         flex-direction: column;
@@ -2998,7 +3008,20 @@
         backdrop-filter: blur(24px);
       }
       #${APP_ID}.is-minimized .idm-main { display: none; }
-      #${APP_ID}.is-minimized .idm-shell { height: auto; }
+      #${APP_ID}.is-minimized .idm-shell { height: auto; border-radius: 18px; }
+      #${APP_ID}.is-minimized {
+        top: auto;
+        left: auto;
+        right: 16px;
+        bottom: 96px;
+        max-width: calc(100vw - 32px);
+      }
+      #${APP_ID}.is-minimized .idm-header { padding: 10px 12px; border-bottom: 0; }
+      #${APP_ID}.is-minimized .idm-brand-icon { width: 32px; height: 32px; border-radius: 10px; }
+      #${APP_ID}.is-minimized .idm-brand-copy h1 { font-size: 16px; }
+      #${APP_ID}.is-minimized .idm-brand-copy p,
+      #${APP_ID}.is-minimized .idm-lang-switch,
+      #${APP_ID}.is-minimized .idm-pill-link { display: none; }
       #${APP_ID} .idm-header {
         display: flex;
         justify-content: space-between;
